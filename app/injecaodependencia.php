@@ -30,7 +30,7 @@ class UserRepository
 {
     protected $db;
 
-    public function __construct(DatabaseConnection $db)
+    public function __construct(DatabaseConnectionInterface $db)
     {
         $this->db = $db;
     }
