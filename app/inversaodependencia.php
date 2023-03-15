@@ -1,5 +1,11 @@
 <?php
-class DatabaseConnection
+
+interface DatabaseConnectionInterface
+{
+    public function connect();
+}
+
+class DatabaseConnection implements DatabaseConnectionInterface
 {
     protected $host;
     protected $username;
@@ -16,7 +22,7 @@ class DatabaseConnection
 
     public function connect()
     {
-        // conecta ao banco de dados usando as credenciais fornecidas
+        // connect to the database using the provided credentials
     }
 }
 
@@ -24,19 +30,19 @@ class UserRepository
 {
     protected $db;
 
-    public function __construct(DatabaseConnection $db)
+    public function __construct(DatabaseConnectionInterface $db)
     {
         $this->db = $db;
     }
 
     public function getUsers()
     {
-        // usa a instância de $db para obter a lista de usuários do banco de dados
+        // use the $this->db instance to get the list of users from the database
     }
 }
 
-// Cria uma instância de DatabaseConnection
+// criar uma instância do DatabaseConnection
 $db = new DatabaseConnection('localhost', 'username', 'password', 'mydatabase');
 
-// Cria uma instância de UserRepository e injeta a instância de DatabaseConnection
+// criar uma instância do UserRepository e injetar a instância do DatabaseConnection
 $userRepository = new UserRepository($db);
